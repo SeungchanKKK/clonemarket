@@ -26,15 +26,14 @@ public class ProductService {
         return productRepository.findAllDepth1(depth1);
     }
 
-<<<<<<< HEAD
     public ProductDetailDto getProductDetail(Long productId) {
         ProductDetail productDetail = productDetailRepository.findByProductId(productId);
         ProductDetailDto productTotal= new ProductDetailDto(productDetail);
         return productTotal;
-=======
+
     public ProductRespDto getDepth2List(String depth1, String depth2) {
         return productRepository.findAllDepth2(depth1, depth2);
->>>>>>> 4e4c52430584f911ec865c53851ff2334804ea09
+
     }
 
 }
