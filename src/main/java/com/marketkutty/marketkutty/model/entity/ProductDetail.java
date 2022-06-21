@@ -46,10 +46,10 @@ public class ProductDetail {
 
     private String viewImage; //상세정보 - 식품정보 이미지
 
-    private String viewTable; //상세정보 - 식품정보 테이블
+
 
     @Builder
-    public ProductDetail(Long id, String amount, String weight, String origin, String packageType, String expired, String notice, String introImage, String introDesc, String viewImage, String viewTable) {
+    public ProductDetail(Long id, String amount, String weight, String origin, String packageType, String expired, String notice, String introImage, String introDesc, String viewImage) {
         this.id = id;
         this.amount = amount;
         this.weight = weight;
@@ -60,6 +60,6 @@ public class ProductDetail {
         this.introImage = introImage;
         this.introDesc = introDesc;
         this.viewImage = viewImage;
-        this.viewTable = viewTable;
+
     }
 }
