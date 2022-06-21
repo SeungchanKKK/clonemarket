@@ -1,6 +1,7 @@
 package com.marketkutty.marketkutty.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.marketkutty.marketkutty.model.entity.baseEntity.BaseEntity;
 import com.marketkutty.marketkutty.model.entity.category.Depth1;
 import com.marketkutty.marketkutty.model.entity.category.Depth2;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Getter
@@ -41,4 +43,9 @@ public class Product extends BaseEntity {
     @JoinColumn(name="DEPTH2_ID")
     @JsonBackReference(value = "product-depth2-fk")
     private Depth2 depth2;
+
+    @OneToMany(mappedBy = "product")
+    @JsonManagedReference(value = "cart-product-fk")
+    private List<Cart> cartList;
+
 }

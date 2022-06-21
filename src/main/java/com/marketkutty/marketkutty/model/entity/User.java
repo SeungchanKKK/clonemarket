@@ -23,6 +23,10 @@ public class User extends BaseEntity {
     @JsonManagedReference(value = "address-user-fk")
     private List<Address> addressList;
 
+    @OneToMany (mappedBy = "user")
+    @JsonManagedReference(value = "cart-user-fk")
+    private List<Cart> cartList;
+
     @NotNull
     private String username;
 
