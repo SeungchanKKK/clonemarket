@@ -1,14 +1,15 @@
 package com.marketkutty.marketkutty.controller;
 
 
-import com.marketkutty.marketkutty.model.dto.responseDto.ProductDetailDto;
-import com.marketkutty.marketkutty.model.dto.responseDto.CategoryRespDto;
-import com.marketkutty.marketkutty.model.dto.responseDto.ProductRespDto;
+import com.marketkutty.marketkutty.model.dto.ProductDto;
+import com.marketkutty.marketkutty.model.dto.responseDto.*;
 import com.marketkutty.marketkutty.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,5 +35,10 @@ public class ProductController {
     @GetMapping("/api/product/{productId}")
     public ProductDetailDto getProductdetail(@PathVariable Long productId) {
         return productService.getProductDetail(productId);
+    }
+
+    @GetMapping("/api/product")
+    public TotalProductDto getProducts() {
+        return productService.getTotal();
     }
 }
