@@ -31,9 +31,9 @@ public class ProductService {
         ProductDetailDto productTotal= new ProductDetailDto(productDetail);
         return productTotal;
 
-    public ProductRespDto getDepth2List(String depth1, String depth2) {
-        return productRepository.findAllDepth2(depth1, depth2);
-
     }
 
+    public ProductRespDto getDepth2List(String depth1, String depth2) {
+        return productRepository.findAllDepth2(depth1,depth2);
+    }
 }
