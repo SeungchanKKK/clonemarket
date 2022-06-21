@@ -74,7 +74,7 @@ public class ProductRepository {
             List<Product> productList = depth1Data.getProductList(); //depth1Data에 해당하는 상품 리스트 조회
             List<ProductDto> productDtoList = new ArrayList<>(); //ProductDto에 담기 위한 변수 선언
             for (Product product : productList) { //depth1Data에 해당하는 상품 리스트를 가져와서 ProductDto List 생성
-                ProductDto productDto = ProductDto.builder()
+                ProductDto productDto= ProductDto.builder()
                         .id(product.getId())
                         .name(product.getName())
                         .price(product.getPrice())

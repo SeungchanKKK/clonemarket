@@ -72,7 +72,7 @@ public class UserController {
 
     // ID 중복 확인
     @ResponseBody
-    @GetMapping("/api/user/signinup/checkId/{username}")
+    @GetMapping("/api/user/signup/checkId/{username}")
     public Boolean usernameDupCheck(@PathVariable String username) {
 
         return userService.checkUsernameDuplicate(username);
@@ -80,7 +80,7 @@ public class UserController {
 
     // Email 중복 확인
     @ResponseBody
-    @GetMapping("/api/user/signinup/checkEmail/{email}")
+    @GetMapping("/api/user/signup/checkEmail/{email}")
     public Boolean emailDupCheck(@PathVariable String email) {
 
         return userService.checkEmailDuplicate(email);
