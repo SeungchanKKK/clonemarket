@@ -80,6 +80,7 @@ public class ProductRepository {
                         .price(product.getPrice())
                         .summary(product.getSummary())
                         .thumb(product.getThumb())
+                        .packageType(product.getPackageType())
                         .build();
                 productDtoList.add(productDto);
             }
@@ -114,6 +115,7 @@ public class ProductRepository {
                         .price(product.getPrice())
                         .summary(product.getSummary())
                         .thumb(product.getThumb())
+                        .packageType(product.getPackageType())
                         .build();
                 productDtoList.add(productDto);
             }

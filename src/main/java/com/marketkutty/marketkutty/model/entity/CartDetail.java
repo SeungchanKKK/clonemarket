@@ -3,12 +3,14 @@ package com.marketkutty.marketkutty.model.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @NoArgsConstructor
+@DynamicUpdate
 public class CartDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +23,12 @@ public class CartDetail {
 
     @ManyToOne
     @JoinColumn(name="PRODUCT_ID")
-    @JsonBackReference(value = "cart-product-fk")
+    @JsonBackReference(value = "cartdetail-product-fk")
     private Product product;
 
     private int quantity;
+
+    public void updateQuantity(int quantity){
+        this.quantity = quantity;
+    }
 }

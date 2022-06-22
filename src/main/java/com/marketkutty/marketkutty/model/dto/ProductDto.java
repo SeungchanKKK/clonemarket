@@ -16,13 +16,15 @@ public class ProductDto {
     private int price;
     private String summary;
     private String thumb;
+    private String packageType;
 
     @Builder
-    public ProductDto(Long id, String name, int price, String summary, String thumb) {
+    public ProductDto(Long id, String name, int price, String summary, String thumb, String packageType) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.summary = summary;
         this.thumb = thumb;
+        this.packageType = packageType;
     }
 }

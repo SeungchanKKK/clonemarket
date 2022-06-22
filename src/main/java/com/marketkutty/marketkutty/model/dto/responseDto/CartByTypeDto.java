@@ -4,23 +4,23 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class CartRespDto {
-
+public class CartByTypeDto {
+    private String packageType;
     private Boolean result;
     private String responseMsg;
-    private int deliveryFee;
-    private List<CartByTypeDto> cartByTypeList;
+    private List<CartDataDto> data;
 
     @Builder
-    public CartRespDto(Boolean result, String responseMsg, int deliveryFee, List<CartByTypeDto> cartByTypeList) {
+    public CartByTypeDto(String packageType, Boolean result, String responseMsg, List<CartDataDto> data) {
+        this.packageType = packageType;
         this.result = result;
         this.responseMsg = responseMsg;
-        this.deliveryFee = deliveryFee;
-        this.cartByTypeList = cartByTypeList;
+        this.data = data;
     }
 }
