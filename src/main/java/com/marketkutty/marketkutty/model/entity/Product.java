@@ -34,6 +34,9 @@ public class Product extends BaseEntity {
     private String thumb;
 
     @NotNull
+    private String packageType;
+
+    @NotNull
     @ManyToOne
     @JoinColumn(name="DEPTH1_ID")
     @JsonBackReference(value = "product-depth1-fk")
@@ -45,7 +48,7 @@ public class Product extends BaseEntity {
     private Depth2 depth2;
 
     @OneToMany(mappedBy = "product")
-    @JsonManagedReference(value = "cart-product-fk")
-    private List<Cart> cartList;
+    @JsonManagedReference(value = "cartdetail-product-fk")
+    private List<CartDetail> cartDetailList;
 
 }

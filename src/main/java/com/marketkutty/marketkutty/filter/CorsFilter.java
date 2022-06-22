@@ -16,7 +16,9 @@ public class CorsFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
 
         String origin = request.getHeader("Origin");
-        if(origin.startsWith("http://localhost:3000")){
+        if(origin.startsWith("http://localhost:3000")
+                || origin.startsWith("http://localhost:8090")
+                || origin.startsWith("http://suhyun.site.s3-website.ap-northeast-2.amazonaws.com")){
             response.setHeader("Access-Control-Allow-Origin", origin); //허용대상 도메인
         }
 
