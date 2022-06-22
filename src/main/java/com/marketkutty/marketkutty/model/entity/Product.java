@@ -48,7 +48,7 @@ public class Product extends BaseEntity {
     private Depth2 depth2;
 
     @OneToMany(mappedBy = "product")
-    @JsonManagedReference(value = "cart-product-fk")
+    @JsonManagedReference(value = "cartdetail-product-fk")
     private List<CartDetail> cartDetailList;
 
 }

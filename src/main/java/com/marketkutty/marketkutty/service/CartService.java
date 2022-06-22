@@ -3,6 +3,7 @@ package com.marketkutty.marketkutty.service;
 import com.marketkutty.marketkutty.model.dto.requestDto.CartDeleteDto;
 import com.marketkutty.marketkutty.model.dto.requestDto.CartPostDto;
 import com.marketkutty.marketkutty.model.dto.requestDto.ProductIdDto;
+import com.marketkutty.marketkutty.model.dto.requestDto.CartUpdateDto;
 import com.marketkutty.marketkutty.model.dto.responseDto.CartRespDto;
 import com.marketkutty.marketkutty.model.dto.responseDto.UserRegisterRespDto;
 import com.marketkutty.marketkutty.model.entity.Cart;
@@ -30,7 +31,11 @@ public class CartService {
     private final UserRepository userRepository;
 
     public CartRespDto getCart(Long userId) {
-        return cartRepository.findAllByUserId(userId);
+        return cartRepository.getCart(userId);
+    }
+
+    public Boolean updateCart(Long userId, Long productId, CartUpdateDto cartUpdateDto) {
+        return cartRepository.updateCart(userId, productId, cartUpdateDto);
     }
 
     @Transactional

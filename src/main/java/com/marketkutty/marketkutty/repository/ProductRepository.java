@@ -80,6 +80,7 @@ public class ProductRepository {
                         .price(product.getPrice())
                         .summary(product.getSummary())
                         .thumb(product.getThumb())
+                        .packageType(product.getPackageType())
                         .build();
                 productDtoList.add(productDto);
             }
@@ -99,8 +100,9 @@ public class ProductRepository {
 
     //수정 필요
     public ProductRespDto findAllDepth2(String depth1, String depth2){
-        Depth2 depth2Data = em.createQuery("select d from Depth2 d where d.depth1.id=:depth1", Depth2.class)
+        Depth2 depth2Data = em.createQuery("select d from Depth2 d where d.depth1.id=:depth1 and d.id=:depth2", Depth2.class)
                 .setParameter("depth1", depth1)
+                .setParameter("depth2", depth2)
                 .getSingleResult();
 
         if(depth2Data != null){
@@ -114,6 +116,7 @@ public class ProductRepository {
                         .price(product.getPrice())
                         .summary(product.getSummary())
                         .thumb(product.getThumb())
+                        .packageType(product.getPackageType())
                         .build();
                 productDtoList.add(productDto);
             }

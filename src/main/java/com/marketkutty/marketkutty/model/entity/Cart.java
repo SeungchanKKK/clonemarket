@@ -28,6 +28,7 @@ public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="CART_ID")
     private Long id;
 
     @OneToOne
