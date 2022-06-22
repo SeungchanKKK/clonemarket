@@ -36,4 +36,8 @@ out/
 ### VS Code ###
 .vscode/
 
+<<<<<<< HEAD
 application.properties
+=======
+application.properties
+>>>>>>> ebd4396be2c368c90cfcc07938f8b6ea26ceacfe
