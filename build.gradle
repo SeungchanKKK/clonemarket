@@ -29,9 +29,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 
     //db
-    runtimeOnly 'com.h2database:h2'
+    //runtimeOnly 'com.h2database:h2'
     //implementation 'com.h2database:h2'
-    runtimeOnly 'mysql:mysql-connector-java'
+    implementation 'mysql:mysql-connector-java'
 
     //security
     //implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -42,8 +42,4 @@ dependencies {
 
     //validation
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
 }
