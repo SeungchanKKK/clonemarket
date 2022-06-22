@@ -23,9 +23,9 @@ public class User extends BaseEntity {
     @JsonManagedReference(value = "address-user-fk")
     private List<Address> addressList;
 
-    @OneToMany (mappedBy = "user")
+    @OneToOne (mappedBy = "user")
     @JsonManagedReference(value = "cart-user-fk")
-    private List<Cart> cartList;
+    private Cart cart;
 
     @NotNull
     private String username;
