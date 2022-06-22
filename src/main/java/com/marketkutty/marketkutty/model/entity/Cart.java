@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -39,5 +40,20 @@ public class Cart {
 
     @OneToMany(mappedBy = "cart")
     @JsonBackReference(value = "cartdetail-cart-fk")
-    private List<CartDetail> cartDetailList;
+    private List<CartDetail> cartDetailList= new ArrayList<>();
+
+    public Cart(User user, CartDetail cartDetail) {
+        this.user = user;
+        this.delivery_fee = 7000;
+        this.cartDetailList.add(cartDetail);
+    }
+
+    public Cart(User user){
+        this.user = user;
+        this.delivery_fee = 7000;
+    }
+
+    public void addCartDeatilList(CartDetail cartDetail) {
+        this.cartDetailList.add(cartDetail);
+    }
 }
