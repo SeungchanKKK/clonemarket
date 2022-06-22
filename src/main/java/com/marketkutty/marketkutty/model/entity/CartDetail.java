@@ -28,7 +28,19 @@ public class CartDetail {
 
     private int quantity;
 
+    public CartDetail(Cart cart, Product product, int quantity) {
+        this.cart = cart;
+        this.product = product;
+        this.quantity = quantity;
+    }
+
+    public void plusnum(int s){
+        this.quantity = s;
+    }
+
+  //plusnum 과 합치기
     public void updateQuantity(int quantity){
         this.quantity = quantity;
     }
+
 }
