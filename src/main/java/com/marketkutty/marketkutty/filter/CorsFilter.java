@@ -1,8 +1,9 @@
-package com.marketkutty.marketkutty.Filter;
+package com.marketkutty.marketkutty.filter;
 
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -12,7 +13,13 @@ public class CorsFilter implements Filter {
             throws IOException, ServletException
     {
         HttpServletResponse response = (HttpServletResponse) res;
-        response.setHeader("Access-Control-Allow-Origin", "*"); //허용대상 도메인
+        HttpServletRequest request = (HttpServletRequest) req;
+
+        String origin = request.getHeader("Origin");
+        if(origin.startsWith("http://localhost:3000")){
+            response.setHeader("Access-Control-Allow-Origin", origin); //허용대상 도메인
+        }
+
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, PATCH, OPTION");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with, origin, content-type, accept");

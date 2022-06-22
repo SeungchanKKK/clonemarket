@@ -29,12 +29,12 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private int delivery_fee;
+
     @ManyToOne
     @JoinColumn(name="USER_ID")
     @JsonBackReference(value="cart-user-fk")
     private User user;
-
-    private int delivery_fee;
 
     @OneToMany(mappedBy = "cart")
     @JsonBackReference(value = "cartdetail-cart-fk")
