@@ -16,9 +16,9 @@ public class CorsFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
 
         String origin = request.getHeader("Origin");
-        if(origin.startsWith("http://localhost:3000")){
-            response.setHeader("Access-Control-Allow-Origin", origin); //허용대상 도메인
-        }
+//        if(origin.startsWith("http://localhost:3000")){
+//            response.setHeader("Access-Control-Allow-Origin", origin); //허용대상 도메인
+//        }
 
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, PATCH, OPTION");
         response.setHeader("Access-Control-Max-Age", "3600");

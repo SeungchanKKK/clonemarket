@@ -1,13 +1,15 @@
 package com.marketkutty.marketkutty.controller;
 
 import com.marketkutty.marketkutty.model.TokenDecode;
+import com.marketkutty.marketkutty.model.dto.requestDto.CartDeleteDto;
+import com.marketkutty.marketkutty.model.dto.requestDto.CartPostDto;
 import com.marketkutty.marketkutty.model.dto.responseDto.CartRespDto;
 import com.marketkutty.marketkutty.service.CartService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,4 +23,21 @@ public class CartController {
         Long userId = decode.getId();
         return cartService.getCart(userId);
     }
+
+   @PostMapping("/api/cart/add/{productId}")
+    public boolean addCart(@PathVariable Long productId,
+                           @RequestBody CartPostDto cartPostDto,
+                           HttpServletRequest httpRequest){
+       TokenDecode decode = (TokenDecode) httpRequest.getAttribute("decode");
+       Long userId = decode.getId();
+       return cartService.addCart(productId,cartPostDto,userId);
+   }
+
+   @DeleteMapping("/api/cart/delete")
+    public boolean deleteCart(@RequestBody List<CartDeleteDto> cartDeleteDto,
+                              HttpServletRequest httpRequest){
+       TokenDecode decode = (TokenDecode) httpRequest.getAttribute("decode");
+       Long userId = decode.getId();
+       return cartService.deleteCart(cartDeleteDto,userId);
+   }
 }

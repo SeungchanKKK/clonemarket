@@ -25,4 +25,15 @@ public class CartDetail {
     private Product product;
 
     private int quantity;
+
+
+    public CartDetail(Cart cart, Product product, int quantity) {
+        this.cart = cart;
+        this.product = product;
+        this.quantity = quantity;
+    }
+
+    public void plusnum(int s){
+        this.quantity = s;
+    }
 }
