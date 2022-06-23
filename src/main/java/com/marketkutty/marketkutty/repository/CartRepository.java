@@ -1,5 +1,6 @@
 package com.marketkutty.marketkutty.repository;
 
+import com.marketkutty.marketkutty.model.dto.requestDto.CartMergeDto;
 import com.marketkutty.marketkutty.model.dto.requestDto.CartUpdateDto;
 import com.marketkutty.marketkutty.model.dto.responseDto.CartByTypeDto;
 import com.marketkutty.marketkutty.model.dto.responseDto.CartDataDto;
@@ -20,13 +21,21 @@ public class CartRepository {
     @PersistenceContext
     EntityManager em;
 
-    private List<Cart> findCartByUser(Long userId) {
+    public void saveCart(Cart cart){
+        em.persist(cart);
+    }
+
+    public void saveCartDetail(CartDetail cartDetail) {
+        em.persist(cartDetail);
+    }
+
+    public List<Cart> findCartByUser(Long userId) {
         return em.createQuery("select c from Cart c where c.user.id=:userId", Cart.class)
                 .setParameter("userId", userId)
                 .getResultList();
     }
 
-    private List<CartDetail> findCartDetail(List<Cart> cart) {
+    public List<CartDetail> findCartDetail(List<Cart> cart) {
         List<CartDetail> cartDetailList = em.createQuery
                         ("select d from CartDetail d where d.cart.id=:cartId", CartDetail.class)
                 .setParameter("cartId", cart.get(0).getId())
@@ -152,7 +161,7 @@ public class CartRepository {
         if(!cartDetailList.isEmpty()){
             for(CartDetail cartDetail:cartDetailList){
                 if(Objects.equals(cartDetail.getProduct().getId(), productId)){
-                    cartDetail.updateQuantity(cartUpdateDto.getQuantity());
+                    cartDetail.updateQuantity(cartDetail, cartUpdateDto.getQuantity());
                     em.persist(cartDetail);
                     result = true;
                 }

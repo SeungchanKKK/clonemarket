@@ -1,6 +1,7 @@
 package com.marketkutty.marketkutty.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
@@ -28,6 +29,14 @@ public class CartDetail {
 
     private int quantity;
 
+    @Builder
+    public CartDetail(Long id, Cart cart, Product product, int quantity) {
+        this.id = id;
+        this.cart = cart;
+        this.product = product;
+        this.quantity = quantity;
+    }
+
     public CartDetail(Cart cart, Product product, int quantity) {
         this.cart = cart;
         this.product = product;
@@ -39,8 +48,8 @@ public class CartDetail {
     }
 
   //plusnum 과 합치기
-    public void updateQuantity(int quantity){
-        this.quantity = quantity;
+    public void updateQuantity(CartDetail cartDetail, int quantity){
+        cartDetail.quantity = quantity;
     }
 
 }

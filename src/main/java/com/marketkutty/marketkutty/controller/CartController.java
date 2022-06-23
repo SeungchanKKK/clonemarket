@@ -2,6 +2,7 @@ package com.marketkutty.marketkutty.controller;
 
 import com.marketkutty.marketkutty.model.TokenDecode;
 import com.marketkutty.marketkutty.model.dto.requestDto.CartDeleteDto;
+import com.marketkutty.marketkutty.model.dto.requestDto.CartMergeDto;
 import com.marketkutty.marketkutty.model.dto.requestDto.CartPostDto;
 
 import com.marketkutty.marketkutty.model.dto.requestDto.CartUpdateDto;
@@ -35,7 +36,7 @@ public class CartController {
        return cartService.addCart(productId,cartPostDto,userId);
    }
 
-   @DeleteMapping("/api/cart/delete")
+    @DeleteMapping("/api/cart/delete")
     public boolean deleteCart(@RequestBody List<CartDeleteDto> cartDeleteDto,
                               HttpServletRequest httpRequest){
        TokenDecode decode = (TokenDecode) httpRequest.getAttribute("decode");
@@ -49,6 +50,14 @@ public class CartController {
         TokenDecode decode = (TokenDecode) httpRequest.getAttribute("decode");
         Long userId = decode.getId();
         return cartService.updateCart(userId, productId, cartUpdateDto);
+    }
+
+    @PostMapping("/api/cart/merge")
+    public Boolean mergeCart(HttpServletRequest httpRequest,
+                             @RequestBody List<CartMergeDto> cartMergeDto){
+        TokenDecode decode = (TokenDecode) httpRequest.getAttribute("decode");
+        Long userId = decode.getId();
+        return cartService.mergeCart(userId, cartMergeDto);
     }
 
 }

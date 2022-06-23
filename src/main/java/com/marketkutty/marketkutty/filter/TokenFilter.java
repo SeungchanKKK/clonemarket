@@ -26,7 +26,7 @@ public class TokenFilter implements Filter {
         UserTokenRespDto tokenRespDto = null;
         String url = httpRequest.getRequestURI();
 
-        // 로그인, 회원가입은 jwt 토큰 인증이 필요 없음
+        // 장바구니 요청 시에만 토큰 필요
         if(url.startsWith("/api/cart")) {
             System.out.println("filter");
             String authorization = httpRequest.getHeader("Authorization");

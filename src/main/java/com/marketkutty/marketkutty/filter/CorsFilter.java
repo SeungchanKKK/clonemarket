@@ -17,15 +17,19 @@ public class CorsFilter implements Filter {
 
         String origin = request.getHeader("Origin");
 
-        if(origin.startsWith("http://localhost:3000")
-                || origin.startsWith("http://localhost:8090")
-                || origin.startsWith("http://suhyun.site.s3-website.ap-northeast-2.amazonaws.com")){
-            response.setHeader("Access-Control-Allow-Origin", origin); //허용대상 도메인
-        }
-
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, PATCH, OPTION");
+//        if(origin.startsWith("http://localhost:3000")
+//                || origin.startsWith("http://localhost:8090")
+//                || origin.startsWith("http://suhyun.site.s3-website.ap-northeast-2.amazonaws.com")
+//                || origin.startsWith("https://kirlyclone.web.app/")
+//        ){
+//            response.setHeader("Access-Control-Allow-Origin", origin); //허용대상 도메인
+//        }
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+        response.setHeader("Access-Control-Allow-Methods", "OPTIONS, POST, GET, DELETE, PUT, PATCH");
         response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "x-requested-with, origin, content-type, accept");
+        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, Origin, Content-Type, Accept, Authorization, Access-Control-Allow-Headers,Key");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+
         chain.doFilter(req, res);
     }
     public void init(FilterConfig filterConfig) {}

@@ -21,6 +21,10 @@ public class ProductRepository {
     @PersistenceContext
     private EntityManager em;
 
+    public Product findProduct(Long productId){
+        return em.find(Product.class, productId);
+    }
+
     public CategoryRespDto findCategory(){
         List<Depth1> depth1List = em.createQuery("select d1 from Depth1 d1", Depth1.class)
                 .getResultList();

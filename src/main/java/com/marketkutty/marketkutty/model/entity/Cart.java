@@ -1,6 +1,7 @@
 package com.marketkutty.marketkutty.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -41,6 +42,13 @@ public class Cart {
     @OneToMany(mappedBy = "cart")
     @JsonBackReference(value = "cartdetail-cart-fk")
     private List<CartDetail> cartDetailList= new ArrayList<>();
+
+    @Builder
+    public Cart(Long id, User user, int delivery_fee) {
+        this.id = id;
+        this.user = user;
+        this.delivery_fee = delivery_fee;
+    }
 
     public Cart(User user, CartDetail cartDetail) {
         this.user = user;
