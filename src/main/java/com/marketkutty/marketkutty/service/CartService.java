@@ -108,17 +108,35 @@ public class CartService {
             for(CartDetail cartDetail:cartDetailList){
                 for(CartMergeDto cartMergeDto:cartMergeDtoList){
                     if(cartDetail.getProduct().getId()==cartMergeDto.getProductId()){
-                        cartDetail.updateQuantity(cartDetail, cartMergeDto.getQuantity());
+                        //cartDetail.updateQuantity(cartDetail, cartMergeDto.getQuantity());
+                        cartRepository.mergeCart(cartDetail, cartMergeDto.getQuantity());
                     }
                 }
             }
 
-            List<CartDetail> newCartDetailList = cartDetailList.stream()
-                    .filter(newCartDetail -> cartMergeDtoList.stream()
-                            .noneMatch(cartMergeDto -> newCartDetail.getProduct().getId().equals(newCartDetail.getProduct().getId())))
+            List<CartMergeDto> newCartMergeDtolList = cartMergeDtoList.stream()
+                    .filter(cartMergeDto -> cartDetailList.stream()
+                            .noneMatch(cartDetail -> cartMergeDto.getProductId().equals(cartDetail.getProduct().getId())))
                     .collect(Collectors.toList());
+            for(CartMergeDto newCartDto:newCartMergeDtolList){
+                cartRepository.saveCartDetail(CartDetail.builder()
+                                .id(null)
+                                .quantity(newCartDto.getQuantity())
+                                .cart(cart)
+                                .product(productRepository.findProduct(newCartDto.getProductId()))
+                        .build());
+            }
+
+            //배달비 업데이트
+            List<CartDetail> newCartDetailList = cartRepository.findCartDetail(cartList);
             for(CartDetail newCartDetail:newCartDetailList){
-                cartRepository.saveCartDetail(newCartDetail);
+                Product product = productRepository.findProduct(newCartDetail.getProduct().getId());
+                totalPrice += product.getPrice()*newCartDetail.getQuantity();
+            }
+            if(totalPrice >= 50000){
+                cart.changeDeliveryFee(cart, 0);
+            } else {
+                cart.changeDeliveryFee(cart, 3000);
             }
         }
         return true;

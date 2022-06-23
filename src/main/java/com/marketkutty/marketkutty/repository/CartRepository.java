@@ -184,4 +184,9 @@ public class CartRepository {
 //            return false;
 //        }
     }
+
+    public void mergeCart(CartDetail cartDetail, int quantity) {
+        cartDetail.updateQuantity(cartDetail, quantity);
+        em.persist(cartDetail);
+    }
 }
