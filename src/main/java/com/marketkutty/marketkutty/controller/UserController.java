@@ -64,6 +64,7 @@ public class UserController {
     }
 
     // 회원 가입 요청 처리
+    @ResponseBody
     @PostMapping("/api/user/signup")
     public UserRegisterRespDto registerUser(@RequestBody SignupDto Dto) throws NoSuchAlgorithmException {
 
@@ -79,7 +80,6 @@ public class UserController {
     }
 
     // Email 중복 확인
-    @ResponseBody
     @GetMapping("/api/user/signup/checkEmail/{email}")
     public Boolean emailDupCheck(@PathVariable String email) {
 

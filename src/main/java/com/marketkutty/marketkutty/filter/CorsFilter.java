@@ -1,6 +1,8 @@
 package com.marketkutty.marketkutty.filter;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.*;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -33,3 +35,4 @@ public class CorsFilter implements Filter {
     public void init(FilterConfig filterConfig) {}
     public void destroy() {}
 }
+
