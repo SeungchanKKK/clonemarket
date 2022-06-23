@@ -83,6 +83,7 @@ public class CartRepository {
                                 .price(cartDetail.getProduct().getPrice())
                                 .quantity(cartDetail.getQuantity())
                                 .build());
+                        break;
                 }
             }
 
@@ -130,7 +131,7 @@ public class CartRepository {
                         .packageType("냉동")
                         .result(true)
                         .responseMsg("냉동 상품 조회에 성공했습니다.")
-                        .data(normalData)
+                        .data(frozenData)
                         .build());
             }
 
