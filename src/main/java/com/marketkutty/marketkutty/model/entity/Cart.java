@@ -64,4 +64,8 @@ public class Cart {
     public void addCartDeatilList(CartDetail cartDetail) {
         this.cartDetailList.add(cartDetail);
     }
+
+    public void changeDeliveryFee(Cart cart, int deliveryFee){
+        cart.delivery_fee = deliveryFee;
+    }
 }
